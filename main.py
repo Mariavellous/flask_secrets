@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Email, Length
 
 WTF_CSRF_SECRET_KEY = "elephant"
 
@@ -12,10 +12,10 @@ app.secret_key = "elephant"
 class LoginForm(FlaskForm):
   # arguments given when creating StringField and PasswordField  is for the label property of the form field
   # prefer adding the keyword argument when it's not clear what the argument is for
-  email = StringField(label="Email", validators=[DataRequired()])
+  email = StringField(label="Email", validators=[DataRequired(), Email()])
   # represents <input type="text". Use for most of the more complicated fields.
   # Using PasswordField, it will obscure the text typed into the input
-  password = PasswordField(label="Password", validators=[DataRequired()])
+  password = PasswordField(label="Password", validators=[DataRequired(), Length(min=8)])
   # SubmitField, represents <input type="submit". This allows checking if submit button is pressed.
   submit = SubmitField(label="Log In")
 
