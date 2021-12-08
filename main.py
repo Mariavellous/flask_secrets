@@ -23,7 +23,18 @@ class LoginForm(FlaskForm):
 @app.route("/login", methods=['POST', 'GET'])
 def login():
   login_form = LoginForm()
-  login_form.validate_on_submit()
+  # Check validate_on_submit is True
+  if login_form.validate_on_submit():
+    # Gather data from user's input
+    user_email = login_form.email.data
+    user_password = int(login_form.password.data)
+    # Check if the user's email/password match the credentials
+    if user_email == "admin@email.com" and user_password == 12345678:
+      # If it matches, show success page.
+      return render_template('success.html')
+    else:
+      # If it doesn't match, show fail page.
+      return render_template('denied.html')
   return render_template('login.html', form=login_form)
 
 
