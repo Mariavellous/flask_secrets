@@ -1,13 +1,7 @@
-{%  extends "base.html" %}
+{%  extends "bootstrap/base.html" %}
 {% block title %}Access Denied{% endblock %}
-{% block styling %}
-    # inherit block styling from base.html
-    {{ super() }}
-    # add below specific style you would like to have/change
-    h1 {
-        color:red;
-    }
-{% endblock %}
+
+
 {% block content %}
 	<div class="container">
 		<h1>Access Denied </h1>
